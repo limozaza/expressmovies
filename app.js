@@ -6,6 +6,16 @@ app.get('/',(req,res)=>{
     res.send("Bonjour Zakaria");
 });
 
+app.get('/movies',(req,res)=>{
+    res.send("Bonjour movies");
+});
+
+app.get('/movies/:id',(req,res)=>{
+
+    const id = req.params.id;
+    res.send(`Bonjour movie ${id}`);
+});
+
 app.get('/admin',(req,res)=>{
     res.send("Bonjour Zakaria admin");
 });
