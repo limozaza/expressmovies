@@ -13,18 +13,16 @@ app.get('/',(req,res)=>{
     res.render('index');
 });
 app.get('/movies',(req,res)=>{
-    res.send("Bonjour movies");
+    res.render('movies');
 });
 app.get('/movies/add',(req,res)=>{
     res.send("Formulaire movies");
 });
 app.get('/movies/:id',(req,res)=>{
     const id = req.params.id;
-    res.send(`Bonjour movie ${id}`);
+    res.render('movie-details');
 });
-app.get('/admin',(req,res)=>{
-    res.send("Bonjour Zakaria admin");
-});
+
 app.listen(PORT,()=>{
     console.log('listen on port 3000');
 })
