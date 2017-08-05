@@ -8,9 +8,11 @@
     <body>
         <div class="central">
             <% include ./partials/header %>
-            <h1>Express Movies</h1>
+            <h1><%= title %></h1>
             <div>
-                liste des films
+                <% for(movie of movies) { %>
+                    <p><%= movie.title %> date <%= movie.year %></p>
+                <% } %>    
             </div>
         </div>
         <% include ./partials/footer %>

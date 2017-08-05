@@ -13,7 +13,14 @@ app.get('/',(req,res)=>{
     res.render('index');
 });
 app.get('/movies',(req,res)=>{
-    res.render('movies');
+    const title = 'Films Francais';
+    const frenchMovies = [
+        {title: "titre 1", year: 2001 },
+        {title: "titre 2", year: 2004 },
+        {title: "titre 3", year: 2015 },
+        {title: "titre 4", year: 1978 }
+    ];
+    res.render('movies',{ movies: frenchMovies, title: title});
 });
 app.get('/movies/add',(req,res)=>{
     res.send("Formulaire movies");
