@@ -15,6 +15,20 @@
                 <% } %>    
             </div>
         </div>
+        <hr/>
+        <hr/>
+        <hr/>
+        <div>
+            <form action="/movies" method="POST">
+                <label for="movietitle">Titre du film</label>
+                <input type="text" name="movietitle" id="movietitle"/>
+                <br/>
+                <label for="movieyear">Année du film</label>
+                <input type="text" name="movieyear" id="movieyear"/>
+                <br/>
+                <input type="submit" value="Ajouter"/>
+            </form>
+        </div>
         <% include ./partials/footer %>
     </body>
 
