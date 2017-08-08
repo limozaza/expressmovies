@@ -7,6 +7,7 @@ const PORT = 3000;
 
 app.use('/public', express.static('public'));
 //app.use(bodyParser.urlencoded({extended: false}));
+let frenchMovies =[];
 
 
 app.set('views', './views');
@@ -17,7 +18,7 @@ app.get('/',(req,res)=>{
 });
 app.get('/movies',(req,res)=>{
     const title = 'Films Francais';
-    const frenchMovies = [
+    frenchMovies = [
         {title: "titre 1", year: 2001 },
         {title: "titre 2", year: 2004 },
         {title: "titre 3", year: 2015 },
@@ -36,7 +37,13 @@ app.get('/movies/:id/',(req,res)=>{
 var urlencodedParser = bodyParser.urlencoded({extended:false});
 
 app.post('/movies',urlencodedParser,(req,res) => {
-    console.log(req.body);
+    var movietitle = req.body.movietitle;
+    var movieyear = req.body.movieyear;
+
+    const newMovie = { title:movietitle, year:movieyear};
+    frenchMovies = [...frenchMovies, newMovie];
+console.log(frenchMovies);
+
     res.sendStatus(201);
 });
 
