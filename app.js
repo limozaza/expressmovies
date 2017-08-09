@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
+const multer  = require('multer')
+const upload = multer()
 
 
 const PORT = 3000;
@@ -36,7 +38,7 @@ app.get('/movies/:id/',(req,res)=>{
 
 var urlencodedParser = bodyParser.urlencoded({extended:false});
 
-app.post('/movies',urlencodedParser,(req,res) => {
+/*app.post('/movies',urlencodedParser,(req,res) => {
     var movietitle = req.body.movietitle;
     var movieyear = req.body.movieyear;
 
@@ -44,7 +46,20 @@ app.post('/movies',urlencodedParser,(req,res) => {
     frenchMovies = [...frenchMovies, newMovie];
     console.log(frenchMovies);
     res.sendStatus(201);
+});*/
+
+app.post('/movies',upload.fields([]),(req,res) => {
+    if(!req.body){
+        return res.sendStatus(500);
+    }else{
+        const formData = req.body;
+        console.log(formData);
+        const newMovie = { title :req.body.movietitle, year: req.body.movieyear};
+        frenchMovies = [...frenchMovies, newMovie];
+        return res.sendStatus(201);
+    }
 });
+    
 
 app.listen(PORT,()=>{
     console.log('listen on port 3000');
