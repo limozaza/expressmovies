@@ -59,6 +59,12 @@ app.post('/movies',upload.fields([]),(req,res) => {
         return res.sendStatus(201);
     }
 });
+
+
+app.get('/movie-search',(req,res)=>{
+    
+    res.render('movie-search');
+});
     
 
 app.listen(PORT,()=>{
