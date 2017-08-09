@@ -42,8 +42,7 @@ app.post('/movies',urlencodedParser,(req,res) => {
 
     const newMovie = { title:movietitle, year:movieyear};
     frenchMovies = [...frenchMovies, newMovie];
-console.log(frenchMovies);
-
+    console.log(frenchMovies);
     res.sendStatus(201);
 });
 
