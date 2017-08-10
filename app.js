@@ -62,9 +62,42 @@ app.post('/movies',upload.fields([]),(req,res) => {
 
 
 app.get('/movie-search',(req,res)=>{
-    
     res.render('movie-search');
 });
+
+/**
+ * 
+ * Les tokens
+ * 
+ * 
+ */
+app.get('/login',(req,res)=>{
+    res.render('login',{title: 'connexion'});
+});
+
+const fakeUser = {email:'zakboite@gmail.com', password: 'limozaza'}
+app.post('/login',urlencodedParser,(req,res)=>{
+    if(!req.body){
+        res.sendStatus(500);
+    }else{
+        if(fakeUser.email === req.body.email && fakeUser.password === req.body.password){
+            
+            res.json({
+                email: 'zakboite@gmail.com'
+            });
+            console.log("requete :",req)
+        }
+        else{
+            res.sendStatus(401);
+        }
+    }
+});
+/**
+ * 
+ * 
+ * 
+ * 
+ */
     
 
 app.listen(PORT,()=>{
