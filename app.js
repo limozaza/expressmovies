@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
-const multer  = require('multer')
-const upload = multer()
+const multer  = require('multer');
+const upload = multer();
+const jwt = require('jsonwebtoken');
 
 
 const PORT = 3000;
@@ -76,16 +77,14 @@ app.get('/login',(req,res)=>{
 });
 
 const fakeUser = {email:'zakboite@gmail.com', password: 'limozaza'}
+const secret = 'zakariaBoufares1986zakariaBoufares1986zakariaBoufares1986zakariaBoufares1986';
 app.post('/login',urlencodedParser,(req,res)=>{
     if(!req.body){
         res.sendStatus(500);
     }else{
         if(fakeUser.email === req.body.email && fakeUser.password === req.body.password){
-            
-            res.json({
-                email: 'zakboite@gmail.com'
-            });
-            console.log("requete :",req)
+            const myToken = jwt.sign({iss: 'http://zaza.fr', user: 'zak', role:'moderator'}, secret);
+            res.json(myToken);
         }
         else{
             res.sendStatus(401);
