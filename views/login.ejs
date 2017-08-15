@@ -39,6 +39,10 @@
 
 			const logoutBtn = document.querySelector('#logout');
 			logoutBtn.addEventListener('click', logout);
+
+			const connectionLinkArea = document.querySelector('#connectionLink');
+
+			handleFormDisplay();
 			
 
 			function loginUser(event) {				
@@ -69,13 +73,23 @@
 				var payLoad = "email=" + email + "&" + "password=" + password; 
 				xhr.send(payLoad); 				
 			}
+			function handleFormDisplay(){
+				if(localStorage.getItem('token')){
+					switchToLoggedinMode();
+				}
+				else{
+					switchToLoggedOutMode();
+				}
+			}
 			function switchToLoggedinMode(){
 				loginArea.style.display = 'none';
 				profileArea.style.display = 'block';
+				connectionLinkArea.innerHTML = '<a href="/login">Déconnexion</a>';
 			}
 			function switchToLoggedOutMode(){
 				loginArea.style.display = 'block';
 				profileArea.style.display = 'none';
+				connectionLinkArea.innerHTML = '<a href="/login">Connexion</a>';
 			}
 			function logout(){
 				switchToLoggedOutMode();
